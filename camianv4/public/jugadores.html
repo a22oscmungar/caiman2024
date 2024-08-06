@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El trivial del caimán v4 - Jugadores</title>
     <link rel="stylesheet" href="stylesjugadores.css">
 </head>
+
 <body>
 
     <div class="waiting-container">
@@ -32,7 +34,7 @@
 
         const updatePlayerList = (players) => {
             const playersList = document.getElementById('players-list');
-            playersList.innerHTML = ''; 
+            playersList.innerHTML = '';
             players.forEach(player => {
                 const playerElement = document.createElement('div');
                 playerElement.classList.add('player');
@@ -64,10 +66,33 @@
         });
 
         // Función para empezar la partida
-        function startGame() {
-            window.location.href = '/pregunta.html';
-        }
-    </script>
+        async function startGame() {
+            try {
+                const username = 'admin';  // Aquí puedes poner la lógica para obtener el nombre de usuario
+                const response = await fetch('/start-game', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username: username }),
+                });
 
-</body>
-</html>
+                console.log(username);
+
+                const data = await response.json();
+                if (data.success) {
+                    window.location.href = '/pregunta.html';
+                } else {
+                    alert(data.error || 'Error al iniciar la partida');
+                }
+            } catch (error) {
+                console.error('Error al iniciar la partida:', error);
+            }
+        }
+
+        // Escuchar el evento de redirección
+        socket.on('redirect-to-question', () => {
+            window.location.href = '/pregunta.html';
+        });
+
+    </script>

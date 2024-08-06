@@ -23,18 +23,18 @@
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        // Función para cargar la pregunta inicial
         async function loadQuestion() {
             try {
                 const response = await fetch('/current-question');
                 const data = await response.json();
 
-                console.log('Pregunta inicial:', data);
-                
+                if (!data || !data.question) {
+                    throw new Error("No hay pregunta activa o la estructura de datos es incorrecta.");
+                }
 
-                document.getElementById("player-name").innerText = data.player;
-                document.getElementById("player-image").src = data.image;
-                document.getElementById("question-text").innerText = data.question.question;
+                document.getElementById("player-name").innerText = data.player || "Jugador desconocido";
+                document.getElementById("player-image").src = data.image || "default-image.png";
+                document.getElementById("question-text").innerText = data.question.question || "Pregunta no disponible";
 
                 const optionsContainer = document.getElementById("options-container");
                 optionsContainer.innerHTML = ''; // Limpiar las opciones anteriores
@@ -51,7 +51,7 @@
                     });
                 });
             } catch (error) {
-                console.error('Error al cargar la pregunta:', error);
+                console.error('Error al cargar la pregunta:', error.message);
             }
         }
 

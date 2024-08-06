@@ -14,9 +14,9 @@ const port = 3000;
 
 let connectedUsers = [];
 let playerImages = {
-    'player1': 'path/to/player1-image.png',
-    'player2': 'path/to/player2-image.png',
-    'admin': 'path/to/admin-image.png'
+    'aitor': 'fotos/aitor.jpeg',
+    'marcos': 'fotos/marcos.jpeg',
+    'admin': 'fotos/admin.jpeg'
 };
 
 let questions = [];
@@ -28,15 +28,16 @@ fs.readFile('questions.json', 'utf8', (err, data) => {
         return;
     }
     questions = JSON.parse(data);
-    console.log('Preguntas cargadas:', questions);
     
 });
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
+    console.log(req.body);
 
     if (users[username] && users[username] === password) {
         if (!connectedUsers.includes(username)) {
@@ -57,7 +58,7 @@ let currentQuestionData = null;
 
 app.post('/start-game', (req, res) => {
     const { username } = req.body;
-
+    
     if (username === 'admin') {
         const players = connectedUsers.filter(user => user !== 'admin');
         if (players.length === 0) {
@@ -68,33 +69,36 @@ app.post('/start-game', (req, res) => {
         const playerImage = playerImages[randomPlayer] || 'default-image.png';
 
         // Seleccionar una pregunta aleatoria
-        currentQuestionData = {
-            player: randomPlayer,
-            image: playerImage,
-            question: questions[Math.floor(Math.random() * questions.length)]
+        const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
+
+        // Configurar la pregunta actual
+        currentQuestionData = { 
+            player: randomPlayer, 
+            image: playerImage, 
+            question: randomQuestion 
         };
 
-        console.log('Pregunta actual:', currentQuestionData);
-        
+        // Emitir la pregunta a través del socket
+        io.emit('start-question', currentQuestionData); // Emitir el evento a todos los clientes
 
-        io.emit('start-question', currentQuestionData);
+        // Emitir una señal a todos los jugadores para redirigir a la página de pregunta
+        io.emit('redirect-to-question');
 
-        res.json({ message: 'Partida iniciada' });
+        res.json({ success: true });
     } else {
         res.status(403).json({ error: 'Solo el administrador puede iniciar la partida' });
     }
 });
 
-// Endpoint para obtener la pregunta actual
+
 app.get('/current-question', (req, res) => {
     if (currentQuestionData) {
         res.json(currentQuestionData);
-        console.log('Pregunta actual:', currentQuestionData);
-        
     } else {
-        res.status(404).json({ error: 'No hay una pregunta activa en este momento' });
+        res.status(400).json({ error: 'No hay pregunta activa' });
     }
 });
+
 
 
 io.on('connection', (socket) => {
