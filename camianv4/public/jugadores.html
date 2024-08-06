@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El trivial del caimán v4 - Jugadores</title>
+    <link rel="stylesheet" href="stylesjugadores.css">
+</head>
+<body>
+
+    <div class="waiting-container">
+        <div class="header">
+            <p id="status-message">Esperando partida...</p>
+            <button id="start-button" style="display: none;" onclick="startGame()">Empezar Partida</button>
+        </div>
+        <div class="players-list" id="players-list">
+            <!-- Aquí se agregarán dinámicamente los jugadores conectados -->
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const isAdmin = urlParams.has('admin');
+
+        if (isAdmin) {
+            document.getElementById('status-message').style.display = 'none';
+            document.getElementById('start-button').style.display = 'block';
+        }
+
+        const socket = io();
+
+        const updatePlayerList = (players) => {
+            const playersList = document.getElementById('players-list');
+            playersList.innerHTML = ''; 
+            players.forEach(player => {
+                const playerElement = document.createElement('div');
+                playerElement.classList.add('player');
+
+                const nameElement = document.createElement('p');
+                nameElement.innerText = player;
+                nameElement.classList.add('player-name');
+
+                playerElement.appendChild(nameElement);
+                playersList.appendChild(playerElement);
+            });
+        };
+
+        socket.on('current-players', (players) => {
+            updatePlayerList(players);
+        });
+
+        socket.on('user-connected', (username) => {
+            const playersList = document.getElementById('players-list');
+            const playerElement = document.createElement('div');
+            playerElement.classList.add('player');
+
+            const nameElement = document.createElement('p');
+            nameElement.innerText = username;
+            nameElement.classList.add('player-name');
+
+            playerElement.appendChild(nameElement);
+            playersList.appendChild(playerElement);
+        });
+
+        // Función para empezar la partida
+        function startGame() {
+            window.location.href = '/pregunta.html';
+        }
+    </script>
+
+</body>
+</html>

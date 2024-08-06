@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El trivial del caimán v4 - Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="title">
+            <img src="tu-imagen.png" alt="Logo" class="logo">
+            <h1>El trivial del caimán v4</h1>
+        </div>
+        <form class="login-form" action="/login" method="POST">
+            <input type="text" name="username" placeholder="Usuario" required>
+            <input type="password" name="password" placeholder="Contraseña" required>
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+        <!-- Mostrar mensaje de error si hay un parámetro de error en la URL -->
+        <script>
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('error')) {
+                alert('Usuario o contraseña incorrectos. Inténtalo de nuevo.');
+            }
+        </script>
+    </div>
+</body>
+</html>

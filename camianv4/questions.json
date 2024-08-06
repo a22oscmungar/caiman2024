@@ -1,0 +1,57 @@
+[
+    {
+        "question": "¿Quién no estuvo en la casa de fin de año con el grupo de Sant Sadurní?",
+        "options": ["Carla", "Javier", "Pablo", "Annia"],
+        "correctAnswer": "Carla"
+    },
+    {
+        "question": "¿Cuándo es el cumpleaños de la última integrante del grupo?",
+        "options": ["1 de enero", "5 de enero", "15 de febrero", "23 de marzo"],
+        "correctAnswer": "5 de enero"
+    },
+    {
+        "question": "¿Dónde compra Javier gran parte de los regalos a mujeres?",
+        "options": ["Zara", "Tous", "Pandora", "Massimo Dutti"],
+        "correctAnswer": "Tous"
+    },
+    {
+        "question": "¿Quién posee actualmente el nivel más alto de estudios académicos?",
+        "options": ["Carla", "Pablo", "Javier", "Annia"],
+        "correctAnswer": "Javier"
+    },
+    {
+        "question": "¿Quién pidió que España ganase la Eurocopa para que RoRo lo hiciera posible?",
+        "options": ["Marcos", "Oscar", "Pablo", "Javier"],
+        "correctAnswer": "Pablo"
+    },
+    {
+        "question": "¿Cuál de estos platos cocinó en gran parte Aitor?",
+        "options": ["Paella", "Smash Burgers", "Pizza", "Ensalada"],
+        "correctAnswer": "Smash Burgers"
+    },
+    {
+        "question": "¿Cuál de estos platos cocinó en gran parte Carla?",
+        "options": ["Lasaña", "Paella", "Macarrones", "Sopa"],
+        "correctAnswer": "Macarrones"
+    },
+    {
+        "question": "¿En qué puesto (sobre 21 equipos) quedó Oscar en el concurso de programación nacional?",
+        "options": ["1", "5", "19", "21"],
+        "correctAnswer": "19"
+    },
+    {
+        "question": "¿Qué había que decir para animar a Marcos jugando a volleyball?",
+        "options": ["¡Dale fuerte!", "¡Vamos, Marcos!", "¡A por todas!", "¡Eres el mejor!"],
+        "correctAnswer": "¡Vamos, Marcos!"
+    },
+    {
+        "question": "¿Qué serie han visto Javier y Oscar aconsejados por Noa, Annia y Carla?",
+        "options": ["Juego de Tronos", "Los Bridgerton", "La Casa de Papel", "Élite"],
+        "correctAnswer": "Los Bridgerton"
+    },
+    {
+        "question": "¿Quién fue el invitado especial en carnaval de 2024?",
+        "options": ["María", "Paula y el ventosas", "Luis", "Alberto"],
+        "correctAnswer": "Paula y el ventosas"
+    }
+]

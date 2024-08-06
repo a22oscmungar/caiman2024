@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El trivial del caimán v4 - Pregunta</title>
+    <link rel="stylesheet" href="stylespregunta.css">
+</head>
+<body>
+    <div class="question-container">
+        <div class="player-info">
+            <img id="player-image" src="" alt="Imagen del jugador" />
+            <p id="player-name"></p>
+        </div>
+        <div class="question-section">
+            <p id="question-text"></p>
+            <div id="options-container">
+                <!-- Opciones de respuesta se agregarán aquí -->
+            </div>
+            <button id="submit-button">Enviar Respuesta</button>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        // Función para cargar la pregunta inicial
+        async function loadQuestion() {
+            try {
+                const response = await fetch('/current-question');
+                const data = await response.json();
+
+                console.log('Pregunta inicial:', data);
+                
+
+                document.getElementById("player-name").innerText = data.player;
+                document.getElementById("player-image").src = data.image;
+                document.getElementById("question-text").innerText = data.question.question;
+
+                const optionsContainer = document.getElementById("options-container");
+                optionsContainer.innerHTML = ''; // Limpiar las opciones anteriores
+                data.question.options.forEach(option => {
+                    const optionElement = document.createElement("div");
+                    optionElement.classList.add("option");
+                    optionElement.innerText = option;
+                    optionsContainer.appendChild(optionElement);
+
+                    // Permitir selección
+                    optionElement.addEventListener('click', () => {
+                        document.querySelectorAll('.option').forEach(el => el.classList.remove('selected'));
+                        optionElement.classList.add('selected');
+                    });
+                });
+            } catch (error) {
+                console.error('Error al cargar la pregunta:', error);
+            }
+        }
+
+        // Llama a la función para cargar la pregunta cuando se carga la página
+        loadQuestion();
+
+        // WebSocket para recibir actualizaciones en tiempo real
+        const socket = io();
+
+        socket.on('start-question', (data) => {
+            console.log('Nueva pregunta recibida:', data);
+            // Actualiza la UI con la nueva pregunta
+            document.getElementById("player-name").innerText = data.player;
+            document.getElementById("player-image").src = data.image;
+            document.getElementById("question-text").innerText = data.question.question;
+
+            const optionsContainer = document.getElementById("options-container");
+            optionsContainer.innerHTML = ''; // Limpiar las opciones anteriores
+            data.question.options.forEach(option => {
+                const optionElement = document.createElement("div");
+                optionElement.classList.add("option");
+                optionElement.innerText = option;
+                optionsContainer.appendChild(optionElement);
+
+                // Permitir selección
+                optionElement.addEventListener('click', () => {
+                    document.querySelectorAll('.option').forEach(el => el.classList.remove('selected'));
+                    optionElement.classList.add('selected');
+                });
+            });
+        });
+
+        document.getElementById("submit-button").addEventListener("click", () => {
+            const selectedOption = document.querySelector(".option.selected");
+            if (!selectedOption) {
+                alert("Por favor selecciona una respuesta.");
+                return;
+            }
+
+            const answer = selectedOption.innerText;
+
+            fetch("/submit-answer", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ player: document.getElementById("player-name").innerText, answer: answer }),
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                alert(data.message);
+                // Aquí puedes redirigir a la siguiente pregunta o mostrar resultados
+            })
+            .catch((error) => {
+                console.error("Error al enviar la respuesta:", error);
+            });
+        });
+    </script>
+</body>
+</html>

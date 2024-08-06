@@ -1,0 +1,78 @@
+/* Reset CSS básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Aseguramos que todo el contenido esté centrado */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Contenedor principal */
+.waiting-container {
+    width: 90%;
+    max-width: 500px;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Estilo del encabezado */
+.header {
+    margin-bottom: 20px;
+}
+
+#status-message {
+    font-size: 1.2em;
+    color: #333;
+}
+
+#start-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: none; /* Oculto por defecto */
+}
+
+#start-button:hover {
+    background-color: #0056b3;
+}
+
+/* Lista de jugadores */
+.players-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.player {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.player-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.player-name {
+    font-size: 1.1em;
+    color: #333;
+}
