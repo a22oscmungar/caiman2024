@@ -113,6 +113,8 @@ io.on('connection', (socket) => {
 
     socket.on('submit-answer', (data) => {
         const correctAnswer = currentQuestion.correctAnswer;
+        console.log('Respuesta recibida:', data.answer);
+        
 
         if (data.answer === correctAnswer) {
             socket.emit('answer-result', { message: '¡Respuesta correcta!' });

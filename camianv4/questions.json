@@ -1,57 +1,98 @@
 [
     {
+        "id" : 1,
         "question": "¿Quién no estuvo en la casa de fin de año con el grupo de Sant Sadurní?",
-        "options": ["Carla", "Javier", "Pablo", "Annia"],
+        "options": ["Carla", "Javier", "Marcos", "Oscar"],
         "correctAnswer": "Carla"
     },
     {
-        "question": "¿Cuándo es el cumpleaños de la última integrante del grupo?",
-        "options": ["1 de enero", "5 de enero", "15 de febrero", "23 de marzo"],
-        "correctAnswer": "5 de enero"
+        "id" : 2,
+        "question": "¿A cual de estos videojuegos ha jugado la mayoria del grupo este año?",
+        "options": ["Tomb Raider", "Fortnite", "Los sims 3", "TeamFight Tactics"],
+        "correctAnswer": "Fortnite"
     },
     {
+        "id" : 3,
         "question": "¿Dónde compra Javier gran parte de los regalos a mujeres?",
         "options": ["Zara", "Tous", "Pandora", "Massimo Dutti"],
         "correctAnswer": "Tous"
     },
     {
+        "id" : 4,
         "question": "¿Quién posee actualmente el nivel más alto de estudios académicos?",
-        "options": ["Carla", "Pablo", "Javier", "Annia"],
+        "options": ["Aitor", "Ana", "Javier", "Oscar"],
         "correctAnswer": "Javier"
     },
     {
+        "id" : 5,
         "question": "¿Quién pidió que España ganase la Eurocopa para que RoRo lo hiciera posible?",
-        "options": ["Marcos", "Oscar", "Pablo", "Javier"],
+        "options": ["Pablo","Marcos", "Oscar",  "Javier"],
         "correctAnswer": "Pablo"
     },
     {
+        "id" : 6,
         "question": "¿Cuál de estos platos cocinó en gran parte Aitor?",
         "options": ["Paella", "Smash Burgers", "Pizza", "Ensalada"],
         "correctAnswer": "Smash Burgers"
     },
     {
+        "id" : 7,
         "question": "¿Cuál de estos platos cocinó en gran parte Carla?",
         "options": ["Lasaña", "Paella", "Macarrones", "Sopa"],
         "correctAnswer": "Macarrones"
     },
     {
+        "id" : 8,
         "question": "¿En qué puesto (sobre 21 equipos) quedó Oscar en el concurso de programación nacional?",
-        "options": ["1", "5", "19", "21"],
+        "options": ["7", "14", "19", "21"],
         "correctAnswer": "19"
     },
     {
+        "id" : 9,
         "question": "¿Qué había que decir para animar a Marcos jugando a volleyball?",
-        "options": ["¡Dale fuerte!", "¡Vamos, Marcos!", "¡A por todas!", "¡Eres el mejor!"],
+        "options": ["¡Dale ahí!", "¡Vamos, Marcos!", "¡A por todas!", "¡Eres el mejor!"],
         "correctAnswer": "¡Vamos, Marcos!"
     },
     {
+        "id" : 10,
         "question": "¿Qué serie han visto Javier y Oscar aconsejados por Noa, Annia y Carla?",
-        "options": ["Juego de Tronos", "Los Bridgerton", "La Casa de Papel", "Élite"],
+        "options": ["Los Bridgerton", "Juego de Tronos", "La Casa de Papel", "Élite"],
         "correctAnswer": "Los Bridgerton"
     },
     {
+        "id" : 11,
         "question": "¿Quién fue el invitado especial en carnaval de 2024?",
-        "options": ["María", "Paula y el ventosas", "Luis", "Alberto"],
+        "options": ["Laura y el panzas", "Claudia y el porros", "Maria y el chupitos", "Paula y el ventosas"],
         "correctAnswer": "Paula y el ventosas"
+    },
+    {
+        "id" : 12,
+        "question": "¿Cuándo es el cumpleaños de Aitor?",
+        "options": ["15 de febrero", "5 de enero", "8 de marzo", "23 de marzo"],
+        "correctAnswer": "8 de marzo"
+    },
+    {
+        "id" : 13,
+        "question": "¿Cuándo es el cumpleaños de Oscar?",
+        "options": ["20 de agosto", "5 de enero", "8 de marzo", "23 de marzo"],
+        "correctAnswer": "20 de agosto"
+    },
+    {
+        "id" : 14,
+        "question": "¿Cuándo es el cumpleaños de Javier?",
+        "options": ["20 de agosto", "28 de mayo", "8 de marzo", "23 de marzo"],
+        "correctAnswer": "28 de mayo"
+    },
+    {
+        "id" : 15,
+        "question": "¿Cuándo es el cumpleaños de Manel?",
+        "options": ["20 de agosto", "28 de mayo", "8 de marzo", "14 de julio"],
+        "correctAnswer": "14 de julio"
+    },
+    {
+        "id" : 16,
+        "question": "¿Cuándo es el cumpleaños de Noa?",
+        "options": ["5", "28 de mayo", "8 de marzo", "23 de marzo"],
+        "correctAnswer": "28 de mayo"
     }
 ]

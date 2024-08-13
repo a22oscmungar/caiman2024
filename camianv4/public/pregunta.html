@@ -93,6 +93,9 @@
 
             const answer = selectedOption.innerText;
 
+            console.log("Enviando respuesta:", answer);
+            
+
             fetch("/submit-answer", {
                 method: "POST",
                 headers: {
